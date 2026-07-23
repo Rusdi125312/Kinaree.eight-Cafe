@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rules - Kinaree Eight</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FBF9F5; color: #2C2A29; }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Navbar -->
+    <header class="bg-[#FBF9F5] border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            <!-- Logo & Tulisan Senada -->
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo Kinaree Eight" class="w-9 h-9 object-contain rounded-full shadow-sm">
+                <span class="text-lg font-extrabold tracking-wider text-[#D97706]">
+                    Kinaree.eight
+                </span>
+            </div>
+
+            <!-- Navigasi Desktop -->
+            <nav class="hidden md:flex gap-6 text-xs font-semibold tracking-widest text-stone-600">
+                <a href="home.html" class="hover:text-[#D97706] transition duration-200">HOME</a>
+                <a href="menu.html" class="hover:text-[#D97706] transition duration-200">MENU</a>
+                <a href="gallery.html" class="hover:text-[#D97706] transition duration-200">GALLERY</a>
+                <a href="rules.html" class="text-[#D97706] border-b-2 border-[#D97706] pb-0.5">RULES</a>
+                <a href="kontak.html" class="hover:text-[#D97706] transition duration-200">CONTACT</a>
+            </nav>
+
+            <!-- Tombol Hamburger Mobile -->
+            <button id="menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-stone-700 focus:outline-none p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#FBF9F5] border-b border-stone-200 px-6 py-4 space-y-3 text-xs font-semibold tracking-widest text-stone-600 shadow-sm transition-all">
+            <a href="home.html" class="block hover:text-[#D97706] py-1 transition">HOME</a>
+            <a href="menu.html" class="block hover:text-[#D97706] py-1 transition">MENU</a>
+            <a href="gallery.html" class="block hover:text-[#D97706] py-1 transition">GALLERY</a>
+            <a href="rules.html" class="block text-[#D97706] py-1">RULES</a>
+            <a href="kontak.html" class="block hover:text-[#D97706] py-1 transition">CONTACT</a>
+        </div>
+    </header>
+
+    <!-- Konten Utama House Rules -->
+    <main class="max-w-2xl mx-auto px-6 py-10">
+        <div class="bg-[#F5F2EB] border border-stone-300 rounded-3xl p-8 md:p-12 shadow-sm space-y-8">
+            
+            <!-- Bagian Atas Poster: Judul -->
+            <div class="flex justify-between items-center border-b border-stone-300 pb-4">
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" alt="Logo" class="w-7 h-7 object-contain">
+                    <span class="text-xs font-bold tracking-widest text-amber-800">kinaree <span class="block text-[9px] tracking-normal font-normal text-stone-500 -mt-1">eight</span></span>
+                </div>
+                <h1 class="text-sm font-extrabold tracking-widest text-stone-900">HOUSE RULES</h1>
+            </div>
+
+            <!-- Header Teks Besar -->
+            <div class="space-y-4 text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-stone-900 uppercase leading-tight font-serif">
+                    Hello, Our Lovely Guests
+                </h2>
+                
+                <!-- Aksen Geometris / Pola Oranye Segitiga Khas Poster -->
+                <div class="flex justify-center md:justify-start gap-1 py-2">
+                    <div class="w-8 h-8 bg-amber-500"></div>
+                    <div class="w-8 h-8 bg-amber-600 clip-triangle"></div>
+                    <div class="w-8 h-8 bg-amber-500"></div>
+                    <div class="w-8 h-8 bg-amber-600"></div>
+                    <div class="w-8 h-8 bg-amber-500"></div>
+                </div>
+            </div>
+
+            <!-- Paragraf & Poin Aturan -->
+            <div class="space-y-4 text-stone-700 text-xs md:text-sm leading-relaxed">
+                <p>
+                    Area Indoor Kinaree dirancang sebagai ruang yang nyaman bagi keluarga, anak-anak, serta tamu yang menginginkan suasana yang tenang dan bebas asap rokok.
+                </p>
+                <p>
+                    Untuk memberikan pengalaman terbaik bagi seluruh tamu, kami menerapkan beberapa ketentuan berikut:
+                </p>
+
+                <ul class="space-y-2 pl-4 list-disc marker:text-amber-600 font-medium">
+                    <li>Area Indoor diprioritaskan untuk keluarga dan grup dengan minimal 4 orang, dan ada beberapa meja untuk 2 orang.</li>
+                    <li>Area Indoor merupakan area <span class="font-bold text-stone-900">Non-Smoking</span> (Bebas Asap Rokok).</li>
+                    <li>Aktivitas merokok dapat dilakukan di area Outdoor yang telah kami sediakan.</li>
+                </ul>
+
+                <p class="pt-2">
+                    Kebijakan ini dibuat bukan untuk membatasi kenyamanan siapa pun, melainkan untuk memastikan setiap tamu dapat menikmati Kinaree dengan nyaman sesuai kebutuhan mereka. Dengan pembagian area yang tepat, kami berharap dapat memberikan pelayanan yang lebih baik, suasana yang lebih nyaman, dan pengalaman yang menyenangkan bagi seluruh pelanggan.
+                </p>
+                <p>
+                    Terima kasih atas pengertian, kerja sama, dan kepercayaan Anda. Kehadiran setiap tamu sangat berarti bagi kami, dan kami akan terus berupaya memberikan pelayanan terbaik untuk semua yang berkunjung ke Kinaree. 🤍
+                </p>
+            </div>
+
+            <!-- Footer Poster -->
+            <div class="border-t border-stone-300 pt-6 text-center">
+                <span class="text-xs font-extrabold tracking-widest text-stone-900">KINARREE EIGHT</span>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Website Utama -->
+    <footer class="bg-[#2C2A29] text-stone-400 py-6 px-6 text-xs mt-12 border-t border-stone-800">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-stone-300 font-semibold">Jl. Kenari No.08, Selabatu, Kec. Cikole, Kota Sukabumi, Jawa Barat 43113</p>
+                <p class="mt-1">
+                    <a href="login.html" title="" class="hover:text-stone-400 transition cursor-default text-stone-400 no-underline">📞</a> 
+                    0857-2408-0808 | ✉️ svarga.kenari@gmail.com
+                </p>
+            </div>
+            <div class="text-stone-400">
+                <p>Jam open daily: 07.00 - 22.00 WIB</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Skrip untuk Toggle Menu Mobile -->
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

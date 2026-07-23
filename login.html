@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Kinaree Eight Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FBF9F5; color: #2C2A29; }
+    </style>
+</head>
+<body class="antialiased flex items-center justify-center min-h-screen px-4">
+
+    <div class="max-w-md w-full bg-[#F5F2EB] border border-stone-300 rounded-2xl p-8 shadow-sm space-y-6">
+        <!-- Judul -->
+        <div class="text-center space-y-1">
+            <span class="font-bold text-xs tracking-widest text-amber-800">KINARREE EIGHT</span>
+            <h1 class="text-2xl font-serif font-bold text-stone-900">Admin Login</h1>
+            <p class="text-xs text-stone-500">Silakan masuk untuk mengelola menu kafe</p>
+        </div>
+
+        <!-- Form Login -->
+        <form onsubmit="handleLogin(event)" class="space-y-4">
+            <div class="space-y-1">
+                <label class="text-xs font-semibold text-stone-700">Username</label>
+                <input type="text" id="username" required class="w-full px-4 py-2.5 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition" placeholder="Masukkan username">
+            </div>
+
+            <div class="space-y-1">
+                <label class="text-xs font-semibold text-stone-700">Password</label>
+                <input type="password" id="password" required class="w-full px-4 py-2.5 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition" placeholder="••••••••">
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-xl text-xs font-semibold bg-stone-900 text-white hover:bg-amber-800 transition shadow-sm">
+                Masuk ke Panel Input
+            </button>
+        </form>
+        
+        <div class="text-center">
+            <a href="menu.html" class="text-[11px] text-stone-500 hover:text-amber-800 transition">&larr; Kembali ke Halaman Menu Utama</a>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+    event.preventDefault();
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value.trim();
+
+    // Mengubah input user ke base64 untuk dicocokkan
+    const encodedPass = btoa(pass);
+
+    // Username dan Password terenkripsi (admin / a2luYXJlZTIwMjY=)
+    const ADMIN_USER = "admin";
+    const ADMIN_PASS_ENC = "a2luYXJlZTIwMjY="; 
+
+    if (user === ADMIN_USER && encodedPass === ADMIN_PASS_ENC) {
+        sessionStorage.setItem("isLoggedIn", "true");
+        window.location.href = "input-menu.html";
+    } else {
+        alert("Username atau Password salah!");
+        document.getElementById('password').value = "";
+    }
+}
+    </script>
+</body>
+</html>

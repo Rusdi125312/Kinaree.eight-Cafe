@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinaree Eight Cafe - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FBF6EC; color: #2C2A29; }
+    </style>
+</head>
+<body class="antialiased selection:bg-amber-800 selection:text-white">
+
+    <!-- Header / Navbar -->
+   <header class="bg-[#FBF9F5] border-b border-stone-200 sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+        
+        <!-- Logo & Tulisan Senada -->
+        <div class="flex items-center gap-3">
+            <img src="logo.png" alt="Logo Kinaree Eight" class="w-9 h-9 object-contain rounded-full shadow-sm">
+            <span class="text-lg font-extrabold tracking-wider text-[#D97706]" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                Kinaree.eight
+            </span>
+        </div>
+
+        <!-- Navigasi Desktop (1 Tema dengan Logo) -->
+        <nav class="hidden md:flex gap-6 text-xs font-semibold tracking-widest text-stone-600">
+            <a href="home.html" class="text-[#D97706] border-b-2 border-[#D97706] pb-0.5">HOME</a>
+            <a href="menu.html" class="hover:text-[#D97706] transition duration-200">MENU</a>
+            <a href="gallery.html" class="hover:text-[#D97706] transition duration-200">GALLERY</a>
+            <a href="rules.html" class="hover:text-[#D97706] transition duration-200">RULES</a>
+            <a href="kontak.html" class="hover:text-[#D97706] transition duration-200">CONTACT</a>
+        </nav>
+
+        <!-- Tombol Hamburger Mobile -->
+        <button id="menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-stone-700 focus:outline-none p-1">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Dropdown Menu Mobile (1 Tema dengan Logo) -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#FBF9F5] border-b border-stone-200 px-6 py-4 space-y-3 text-xs font-semibold tracking-widest text-stone-600 shadow-sm transition-all">
+        <a href="home.html" class="block text-[#D97706] py-1">HOME</a>
+        <a href="menu.html" class="block hover:text-[#D97706] py-1 transition">MENU</a>
+        <a href="gallery.html" class="block hover:text-[#D97706] py-1 transition">GALLERY</a>
+        <a href="rules.html" class="block hover:text-[#D97706] py-1 transition">RULES</a>
+        <a href="kontak.html" class="block hover:text-[#D97706] py-1 transition">CONTACT</a>
+    </div>
+</header>
+
+<!-- Script Interaktif untuk Menu Mobile -->
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+</script>
+
+
+    <!-- Halaman Home Content -->
+    <main class="max-w-4xl mx-auto px-4 py-6 space-y-6">
+        
+        <!-- Hero Section -->
+      <div class="relative rounded-2xl overflow-hidden shadow-md text-center text-white py-16 px-6 bg-stone-200">
+    <!-- Gambar Latar Belakang -->
+    <img src="bg.jpeg" alt="Kinaree Atmosphere" class="absolute inset-0 w-full h-full object-cover">
+    
+    <!-- Lapisan Gelap Transparan yang Diperhalus (Dari bg-black/50 menjadi bg-black/20 atau bg-black/30) -->
+    <div class="absolute inset-0 bg-black/25 z-10"></div>
+    
+    <!-- Konten Teks (Menggunakan z-20 agar berada di atas lapisan transparan) -->
+    <div class="relative z-20 max-w-xl mx-auto space-y-3">
+        <h1 class="text-2xl md:text-3xl font-serif font-bold tracking-tight text-white drop-shadow-md">Kinaree Eight Cafe:</h1>
+        <p class="text-lg md:text-xl font-serif italic text-amber-200 drop-shadow-md">“Setiap Pertemuan Punya Cerita”</p>
+        <div class="pt-4">
+            <a href="menu.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold uppercase tracking-widest px-6 py-2.5 rounded-md shadow-lg transition">
+                LIHAT MENU
+            </a>
+        </div>
+    </div>
+</div>
+
+        <!-- Section: Tentang Kami & Grid Foto -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+            <div class="bg-[#F5F0E6] border border-stone-300/80 rounded-2xl p-6 shadow-sm space-y-4">
+                <div class="flex items-center gap-3">
+                    <div><img src="logo.png" alt="Logo Kinaree Eight" class="w-8 h-8 object-contain"></div>
+                    <h2 class="text-xl font-serif font-bold text-stone-900 tracking-wide border-l-4 border-amber-600 pl-3">Tentang Kami</h2>
+                </div>
+                <p class="text-stone-600 text-xs leading-relaxed">
+                    A homey cafe in Sukabumi for your daily coffee and a place to create stories.
+                </p>
+                <p class="text-stone-700 text-xs font-medium">
+                    Open daily from 07.00 - 22.00 WIB.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 bg-[#F5F0E6] border border-stone-300/80 rounded-2xl p-3 shadow-sm">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=200&q=60" class="w-full h-20 object-cover rounded-lg">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=60" class="w-full h-20 object-cover rounded-lg">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=200&q=60" class="w-full h-20 object-cover rounded-lg">
+                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=200&q=60" class="w-full h-20 object-cover rounded-lg">
+               <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=200&q=60" class="w-full h-20 object-cover rounded-lg">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=200&q=60" class="w-full h-20 object-cover rounded-lg">
+            </div>
+        </div>
+
+        <!-- Section: Our Menu Highlights -->
+        <div class="bg-[#303841] text-white rounded-2xl p-6 shadow-md text-center space-y-6">
+            <h2 class="text-xl font-serif font-bold tracking-wide">Our Menu Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-stone-800 rounded-xl overflow-hidden p-3 border border-stone-700">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=400&q=60" class="w-full h-32 object-cover rounded-lg mb-2">
+                    <p class="text-xs font-semibold text-amber-200">Signature Coffee</p>
+                </div>
+                <div class="bg-stone-800 rounded-xl overflow-hidden p-3 border border-stone-700">
+                    <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=400&q=60" class="w-full h-32 object-cover rounded-lg mb-2">
+                    <p class="text-xs font-semibold text-amber-200">Butter Croissant</p>
+                </div>
+                <div class="bg-stone-800 rounded-xl overflow-hidden p-3 border border-stone-700">
+                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=400&q=60" class="w-full h-32 object-cover rounded-lg mb-2">
+                    <p class="text-xs font-semibold text-amber-200">Nasi Ayam Spesial</p>
+                </div>
+            </div>
+            <div>
+                <a href="menu.html" class="text-xs text-amber-300 underline hover:text-white transition">Lihat menu page »</a>
+            </div>
+        </div>
+
+        <!-- Section: Suara Pelanggan -->
+        <div class="bg-[#F5F0E6] border border-stone-300/80 rounded-2xl p-6 text-center space-y-3 shadow-sm">
+            <h2 class="text-lg font-serif font-bold text-stone-900">Suara Pelanggan</h2>
+            <div class="flex justify-center items-center gap-6">
+                <div>
+                    <span class="text-3xl font-bold text-stone-900">4.9</span>
+                    <div class="text-amber-500 text-xs">★★★★★</div>
+                </div>
+                <div class="text-left text-xs text-stone-600 italic max-w-xs border-l-2 border-amber-700 pl-3">
+                    "Tempatnya nyaman untuk nongkrong bareng teman, kopi susu nya best banget!"
+                </div>
+            </div>
+        </div>
+
+        <!-- Section: Rencanakan Kunjungan Anda -->
+        <div class="bg-gradient-to-r from-[#C29B38] to-[#9E7B26] rounded-2xl p-5 text-white text-center space-y-4 shadow">
+            <h2 class="font-serif font-bold text-base">Rencanakan Kunjungan Anda</h2>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="https://wa.me/6285724080808" target="_blank" class="bg-stone-900 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-black transition">
+                    <i class="bi bi-whatsapp text-sm"></i> WA: Pesan / Info
+                </a>
+                <a href="https://maps.app.goo.gl/XppcvchUZ9gBvHh86" target="_blank" class="bg-white text-stone-900 text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-stone-100 transition">
+                    <i class="bi bi-geo-alt text-sm"></i> Peta Lokasi
+                </a>
+                <a href="tel:085724080808" class="bg-white text-stone-900 text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-stone-100 transition">
+                    <i class="bi bi-telephone-fill text-amber-700 text-sm"></i>Telepon Kami
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer Bawah -->
+    <footer class="bg-[#2C2A29] text-stone-400 py-6 px-6 text-xs mt-12 border-t border-stone-800">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-stone-300 font-semibold">Jl. Kenari No.08, Selabatu, Kec. Cikole, Kota Sukabumi, Jawa Barat 43113</p>
+                <p class="mt-1">📞 0857-2408-0808 | ✉️ svarga.kenari@gmail.com</p>
+            </div>
+            <div class="text-stone-400">
+                <p>Jam open daily: 07.00 - 22.00 WIB</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

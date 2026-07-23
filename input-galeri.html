@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Galeri Admin - Kinaree Eight Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FBF6EC; color: #2C2A29; }
+    </style>
+    <!-- Skrip Pengaman Session Login -->
+    <script>
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            alert("Akses ditolak! Silakan login terlebih dahulu.");
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body class="antialiased min-h-screen flex flex-col justify-between selection:bg-amber-800 selection:text-white">
+
+    <!-- Header Panel Admin -->
+    <header class="bg-[#FBF9F5] border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-2xl mx-auto px-6 py-4 flex justify-between items-center">
+             <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo Kinaree Eight" class="w-8 h-8 object-contain rounded-full shadow-sm">
+                <span class="font-bold text-xs tracking-wider text-[#D97706]">ADMIN GALLERY GENERATOR</span>
+            </div>
+            <a href="input-menu.html" class="text-xs font-semibold text-stone-600 hover:text-amber-800 transition">Kelola Menu &rarr;</a>
+        </div>
+    </header>
+
+    <!-- Konten Form Input -->
+    <main class="max-w-xl mx-auto px-4 py-10 w-full space-y-6">
+        <div class="bg-[#F5F0E6] border border-stone-300 rounded-2xl p-8 shadow-sm space-y-6">
+            
+            <div class="text-center space-y-1">
+                <h1 class="text-xl font-serif font-bold text-stone-900">Tambah Data Galeri Baru</h1>
+                <p class="text-xs text-stone-500">Isi form di bawah untuk menghasilkan format data yang siap dimasukkan ke Google Sheet.</p>
+            </div>
+
+            <!-- Form Generator -->
+            <form id="gallery-form" onsubmit="generateRowData(event)" class="space-y-4">
+                
+                <!-- Kategori -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Kategori Galeri</label>
+                    <select id="category" required class="w-full px-4 py-2.5 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-[#D97706] transition">
+                        <option value="" disabled selected>Pilih Kategori Galeri</option>
+                        <option value="suasana">suasana</option>
+                        <option value="kopi">kopi</option>
+                    </select>
+                </div>
+
+                <!-- URL Gambar -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">URL Gambar (Link Foto)</label>
+                    <input type="url" id="imageUrl" required class="w-full px-4 py-2.5 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-[#D97706] transition" placeholder="Contoh: https://images.unsplash.com/... atau link foto Anda">
+                </div>
+
+                <!-- Judul Foto -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Judul Foto</label>
+                    <input type="text" id="title" required class="w-full px-4 py-2.5 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-[#D97706] transition" placeholder="Contoh: Ruang Utama Indoor">
+                </div>
+
+                <!-- Deskripsi Singkat -->
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Deskripsi Singkat</label>
+                    <textarea id="desc" rows="3" required class="w-full px-4 py-2.5 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-[#D97706] transition" placeholder="Contoh: Nyaman untuk bekerja atau bersantai"></textarea>
+                </div>
+
+                <!-- Tombol Submit -->
+                <button type="submit" class="w-full py-3 rounded-xl text-xs font-semibold bg-stone-900 text-white hover:bg-[#D97706] transition shadow-sm">
+                    Buat Baris Google Sheet
+                </button>
+            </form>
+        </div>
+
+        <!-- Kotak Hasil Output untuk Dicopy ke Google Sheet -->
+        <div id="output-section" class="bg-white border border-stone-300 rounded-2xl p-6 shadow-sm space-y-4 hidden">
+            <div class="flex justify-between items-center">
+                <h3 class="text-xs font-bold text-stone-900">Salin Data Ini ke Baris Baru Google Sheet Anda:</h3>
+                <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-semibold">Siap Salin</span>
+            </div>
+
+            <!-- Tabel Panduan Kolom -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-[11px] border border-stone-200">
+                    <thead class="bg-stone-100 text-stone-700">
+                        <tr>
+                            <th class="p-2 border-b">Kolom A (category)</th>
+                            <th class="p-2 border-b">Kolom B (imageUrl)</th>
+                            <th class="p-2 border-b">Kolom C (title)</th>
+                            <th class="p-2 border-b">Kolom D (desc)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-stone-800">
+                            <td id="res-cat" class="p-2 border-b font-mono"></td>
+                            <td id="res-img" class="p-2 border-b font-mono truncate max-w-[120px]"></td>
+                            <td id="res-title" class="p-2 border-b font-mono"></td>
+                            <td id="res-desc" class="p-2 border-b font-mono"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button onclick="copyToClipboard()" class="w-full py-2.5 rounded-xl text-xs font-semibold bg-stone-800 text-white hover:bg-stone-900 transition">
+                Salin Teks Format Baris (Tab-Separated)
+            </button>
+            <p class="text-[10px] text-stone-500 text-center">Tip: Anda cukup membuka Google Sheet Anda, klik baris kosong paling bawah di kolom A, lalu tekan <b>Ctrl + V</b>.</p>
+        </div>
+
+        <div class="text-center pt-2">
+            <a href="gallery.html" class="text-xs font-semibold text-stone-600 hover:text-[#D97706] transition">&larr; Kembali ke Halaman Galeri Publik</a>
+        </div>
+
+            <div>
+                <button onclick="handleLogout()" class="text-xs font-semibold text-stone-600 hover:text-[#D97706] transition">
+                    Keluar (Logout)
+                </button>
+            </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#2C2A29] text-stone-400 py-6 px-6 text-xs mt-12 border-t border-stone-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <p>Kinaree Eight Cafe Admin Dashboard &copy; 2026</p>
+        </div>
+    </footer>
+
+    <!-- Skrip Generator Data -->
+    <script>
+        let rawTabString = "";
+
+        function generateRowData(event) {
+            event.preventDefault();
+
+            const category = document.getElementById('category').value;
+            const imageUrl = document.getElementById('imageUrl').value;
+            const title = document.getElementById('title').value;
+            const desc = document.getElementById('desc').value;
+
+            // Tampilkan ke tabel preview
+            document.getElementById('res-cat').innerText = category;
+            document.getElementById('res-img').innerText = imageUrl;
+            document.getElementById('res-title').innerText = title;
+            document.getElementById('res-desc').innerText = desc;
+
+            // Format tab-separated agar bisa langsung di-paste ke cell Google Sheet secara berdampingan (Kolom A s/d D)
+            rawTabString = `${category}\t${imageUrl}\t${title}\t${desc}`;
+
+            document.getElementById('output-section').classList.remove('hidden');
+            document.getElementById('output-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyToClipboard() {
+            navigator.clipboard.writeText(rawTabString).then(() => {
+                alert("Berhasil disalin! Buka Google Sheet Anda, klik sel di kolom A pada baris kosong, lalu tekan Ctrl+V.");
+            }).catch(err => {
+                alert("Gagal menyalin teks secara otomatis.");
+            });
+        }
+
+        function handleLogout() {
+            sessionStorage.removeItem("isLoggedIn");
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinaree Eight Cafe - Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FBF9F5; color: #2C2A29; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header / Navbar -->
+    <header class="bg-[#FBF9F5] border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <!-- Logo & Tulisan Senada -->
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo Kinaree Eight" class="w-9 h-9 object-contain rounded-full shadow-sm">
+                <span class="text-lg font-extrabold tracking-wider text-[#D97706]" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                    Kinaree.eight
+                </span>
+            </div>
+
+            <!-- Navigasi Desktop (1 Tema dengan Logo) -->
+            <nav class="hidden md:flex gap-6 text-xs font-semibold tracking-widest text-stone-600">
+                <a href="home.html" class="hover:text-[#D97706] transition duration-200">HOME</a>
+                <a href="menu.html" class="text-[#D97706] border-b-2 border-[#D97706] pb-0.5">MENU</a>
+                <a href="gallery.html" class="hover:text-[#D97706] transition duration-200">GALLERY</a>
+                <a href="rules.html" class="hover:text-[#D97706] transition duration-200">RULES</a>
+                <a href="kontak.html" class="hover:text-[#D97706] transition duration-200">CONTACT</a>
+            </nav>
+
+            <!-- Tombol Hamburger Mobile -->
+            <button id="menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-stone-700 focus:outline-none p-1">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown Menu Mobile (1 Tema dengan Logo) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#FBF9F5] border-b border-stone-200 px-6 py-4 space-y-3 text-xs font-semibold tracking-widest text-stone-600 shadow-sm transition-all">
+            <a href="home.html" class="block text-[#D97706] py-1">HOME</a>
+            <a href="menu.html" class="block hover:text-[#D97706] py-1 transition">MENU</a>
+            <a href="gallery.html" class="block hover:text-[#D97706] py-1 transition">GALLERY</a>
+            <a href="rules.html" class="block hover:text-[#D97706] py-1 transition">RULES</a>
+            <a href="kontak.html" class="block hover:text-[#D97706] py-1 transition">CONTACT</a>
+        </div>
+    </header>
+
+<!-- Script Interaktif untuk Menu Mobile -->
+<script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+    }
+</script>
+
+    <!-- Hero Title -->
+    <section class="max-w-4xl mx-auto px-6 pt-10 pb-6 text-center">
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-stone-800">Kinaree Eight Cafe - MENU</h1>
+        <p class="text-xs tracking-widest text-stone-500 mt-2">Open Daily 07.00 - 22.00 WIB</p>
+    </section>
+
+    <!-- Filter Kategori -->
+    <div class="max-w-4xl mx-auto px-6 mb-8 flex justify-center gap-3">
+        <button onclick="filterCategory('all')" id="btn-all" class="px-5 py-2 rounded-full text-xs font-semibold bg-stone-800 text-white transition">Semua</button>
+        <button onclick="filterCategory('Drinks')" id="btn-drinks" class="px-5 py-2 rounded-full text-xs font-semibold bg-white border border-stone-300 text-stone-700 transition hover:bg-stone-100">Drinks</button>
+        <button onclick="filterCategory('Foods')" id="btn-foods" class="px-5 py-2 rounded-full text-xs font-semibold bg-white border border-stone-300 text-stone-700 transition hover:bg-stone-100">Foods</button>
+    </div>
+
+    <!-- Main Container Menu -->
+    <main class="max-w-4xl mx-auto px-6 pb-20">
+        <div id="menu-container" class="bg-[#F5F2EB] border border-stone-300 rounded-2xl p-6 md:p-10 shadow-sm">
+            <!-- Konten Menu akan dimuat otomatis oleh JavaScript -->
+            <div class="text-center py-12 text-stone-400 text-sm">Memuat menu dari database...</div>
+        </div>
+
+        <br class="my-1 border-stone-100">
+      
+        <div class="text-center text-stone-500 text-xs">
+            <p>Menu dapat berubah sewaktu-waktu tanpa pemberitahuan sebelumnya.</p>
+            <p>Harga sudah termasuk pajak dan layanan.</p>
+        </div>
+        <br class="my-1 border-stone-100">
+
+        <!-- Section: Rencanakan Kunjungan Anda -->
+        <div class="bg-gradient-to-r from-[#C29B38] to-[#9E7B26] rounded-2xl p-5 text-white text-center space-y-4 shadow">
+            <h2 class="font-serif font-bold text-base">Rencanakan Kunjungan Anda</h2>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="https://wa.me/6285724080808" target="_blank" class="bg-stone-900 text-white text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-black transition">
+                    <i class="bi bi-whatsapp text-sm"></i> WA: Pesan / Info
+                </a>
+                <a href="https://maps.app.goo.gl/XppcvchUZ9gBvHh86" target="_blank" class="bg-white text-stone-900 text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-stone-100 transition">
+                    <i class="bi bi-geo-alt text-sm"></i> Peta Lokasi
+                </a>
+                <a href="tel:085724080808" class="bg-white text-stone-900 text-xs font-semibold px-4 py-2 rounded-lg shadow hover:bg-stone-100 transition">
+                    <i class="bi bi-telephone-fill text-amber-700 text-sm"></i>Telepon Kami
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+  <!-- Footer Bawah -->
+    <footer class="bg-[#2C2A29] text-stone-400 py-6 px-6 text-xs mt-12 border-t border-stone-800">
+        <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div>
+                <p class="text-stone-300 font-semibold">Jl. Kenari No.08, Selabatu, Kec. Cikole, Kota Sukabumi, Jawa Barat 43113</p>
+                
+                <p class="mt-1">
+                    <a href="login.html" title="" class="hover:text-stone-400 transition cursor-default text-stone-400 no-underline">📞</a> 
+                    0857-2408-0808 | ✉️ svarga.kenari@gmail.com
+                </p>
+            </div>
+            <div class="text-stone-400">
+                <p>Jam open daily: 07.00 - 22.00 WIB</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer Action -->
+    <script>
+        // Ganti URL di bawah ini dengan URL Web App Google Apps Script Anda nanti
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-Pi9mWinhNJm-tAI8Tbt6jLwqmUG4SxfPLIi36QQ3H82Cx_RzM4OUDR16cp8XoQOzyg/exec";
+
+        // Data cadangan (Fallback) sesuai referensi gambar Anda jika Google Sheet belum dikoneksi
+        const fallbackData = [
+            { id: 1, nama_menu: "Caramel Brulee", kategori: "Drinks", sub_kategori: "Signature", harga: "27K", deskripsi: "" },
+            { id: 2, nama_menu: "Cheese Latte", kategori: "Drinks", sub_kategori: "Signature", harga: "25K", deskripsi: "" },
+            { id: 3, nama_menu: "Es Kopi Susu Aren", kategori: "Drinks", sub_kategori: "Signature", harga: "27K", deskripsi: "" },
+            { id: 4, nama_menu: "Americano", kategori: "Drinks", sub_kategori: "Classic", harga: "22K", deskripsi: "" },
+            { id: 5, nama_menu: "Cafe Latte", kategori: "Drinks", sub_kategori: "Classic", harga: "25K", deskripsi: "" },
+            { id: 6, nama_menu: "Cloud Matcha", kategori: "Drinks", sub_kategori: "Matcha Series", harga: "32K", deskripsi: "" },
+            { id: 7, nama_menu: "Tahu Baso", kategori: "Foods", sub_kategori: "Snacks", harga: "25K", deskripsi: "" },
+            { id: 8, nama_menu: "Butter Croissant", kategori: "Foods", sub_kategori: "Pastry", harga: "25K", deskripsi: "" },
+            { id: 9, nama_menu: "Nasi Ayam Serundeng", kategori: "Foods", sub_kategori: "Main Course", harga: "35K", deskripsi: "" },
+            { id: 10, nama_menu: "Tomyam", kategori: "Foods", sub_kategori: "Main Course", harga: "45K", deskripsi: "" }
+        ];
+
+        let menuList = [];
+
+        async function fetchMenu() {
+            if (!SCRIPT_URL) {
+                menuList = fallbackData;
+                renderMenu(menuList);
+                return;
+            }
+            try {
+                let response = await fetch(SCRIPT_URL);
+                let data = await response.json();
+                menuList = data;
+                renderMenu(menuList);
+            } catch (error) {
+                console.error("Gagal memuat dari Google Sheet, menggunakan data lokal.", error);
+                menuList = fallbackData;
+                renderMenu(menuList);
+            }
+        }
+
+        function renderMenu(data) {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = "";
+
+            // Kelompokkan berdasarkan kategori utama & sub-kategori
+            let categories = [...new Set(data.map(item => item.kategori))];
+
+            categories.forEach(cat => {
+                let catSection = document.createElement('div');
+                catSection.className = "mb-10 last:mb-0";
+                
+                let catTitle = document.createElement('h2');
+                catTitle.className = "text-2xl font-serif font-bold text-stone-900 border-b border-stone-300 pb-2 mb-6 uppercase tracking-wider";
+                catTitle.innerText = cat;
+                catSection.appendChild(catTitle);
+
+                let subCategories = [...new Set(data.filter(item => item.kategori === cat).map(item => item.sub_kategori))];
+
+                subCategories.forEach(subCat => {
+                    let subWrapper = document.createElement('div');
+                    subWrapper.className = "mb-6";
+
+                    if(subCat && subCat !== "undefined") {
+                        let subTitle = document.createElement('h3');
+                        subTitle.className = "text-lg font-bold text-amber-900 mb-3 italic";
+                        subTitle.innerText = subCat;
+                        subWrapper.appendChild(subTitle);
+                    }
+
+                    let grid = document.createElement('div');
+                    grid.className = "grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3";
+
+                    let items = data.filter(item => item.kategori === cat && item.sub_kategori === subCat);
+                    items.forEach(item => {
+                        let itemRow = document.createElement('div');
+                        itemRow.className = "flex justify-between items-baseline border-b border-stone-300/60 pb-2";
+                        itemRow.innerHTML = `
+                            <div>
+                                <span class="font-medium text-stone-800 text-sm">${item.nama_menu}</span>
+                                ${item.deskripsi ? `<p class="text-[11px] text-stone-500">${item.deskripsi}</p>` : ''}
+                            </div>
+                            <span class="font-semibold text-stone-900 text-sm ml-4">${item.harga}</span>
+                        `;
+                        grid.appendChild(itemRow);
+                    });
+
+                    subWrapper.appendChild(grid);
+                    catSection.appendChild(subWrapper);
+                });
+
+                container.appendChild(catSection);
+            });
+        }
+
+        function filterCategory(category) {
+            // Ubah style tombol aktif
+            ['all', 'drinks', 'foods'].forEach(id => {
+                let btn = document.getElementById(`btn-${id}`);
+                if(btn) {
+                    btn.className = "px-5 py-2 rounded-full text-xs font-semibold bg-white border border-stone-300 text-stone-700 transition hover:bg-stone-100";
+                }
+            });
+            let activeBtn = document.getElementById(`btn-${category.toLowerCase()}`);
+            if(activeBtn) {
+                activeBtn.className = "px-5 py-2 rounded-full text-xs font-semibold bg-stone-800 text-white transition";
+            }
+
+            if(category === 'all') {
+                renderMenu(menuList);
+            } else {
+                let filtered = menuList.filter(item => item.kategori.toLowerCase() === category.toLowerCase());
+                renderMenu(filtered);
+            }
+        }
+
+        // Jalankan saat halaman dimuat
+        fetchMenu();
+    </script>
+</body>
+</html>

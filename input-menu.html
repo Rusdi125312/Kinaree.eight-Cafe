@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Menu - Kinaree Eight Cafe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #FBF9F5; color: #2C2A29; }
+    </style>
+    <script>
+        // Cek apakah admin sudah login atau belum
+        if (sessionStorage.getItem("isLoggedIn") !== "true") {
+            alert("Akses ditolak! Silakan login terlebih dahulu.");
+            window.location.href = "login.html";
+        }
+    </script>
+</head>
+<body class="antialiased">
+
+    <!-- Header Panel Admin -->
+    <header class="bg-[#FBF9F5] border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-2xl mx-auto px-6 py-4 flex justify-between items-center">
+             <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Logo Kinaree Eight" class="w-8 h-8 object-contain rounded-full shadow-sm">
+                <span class="font-bold text-xs tracking-wider text-[#D97706]">ADMIN MENU PANEL</span>
+            </div>
+            <a href="input-galeri.html" class="text-xs font-semibold text-stone-600 hover:text-amber-800 transition">Kelola Galeri &rarr;</a>
+        </div>
+    </header>
+
+    <!-- Konten Form Input & Hapus -->
+    <main class="max-w-2xl mx-auto px-4 py-8 space-y-6">
+        
+        <!-- Form Tambah Menu -->
+        <div class="bg-[#F5F2EB] border border-stone-300 rounded-2xl p-6 md:p-10 shadow-sm space-y-6">
+            <div class="space-y-1">
+                <h1 class="text-xl font-serif font-bold text-stone-900">Tambah Menu Baru</h1>
+                <p class="text-xs text-stone-500">Data yang dimasukkan akan langsung tersimpan ke Google Sheet.</p>
+            </div>
+
+            <form id="inputForm" onsubmit="submitData(event)" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Nama Menu</label>
+                    <input type="text" id="nama_menu" required class="w-full px-4 py-2 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition" placeholder="Contoh: Es Kopi Susu Aren">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Kategori Utama</label>
+                    <select id="kategori" onchange="updateSubKategori()" required class="w-full px-4 py-2 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition">
+                        <option value="">Pilih Kategori</option>
+                        <option value="Drinks">Drinks</option>
+                        <option value="Foods">Foods</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Sub-Kategori</label>
+                    <select id="sub_kategori" required class="w-full px-4 py-2 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition">
+                        <option value="">Pilih kategori utama terlebih dahulu</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Harga</label>
+                    <input type="text" id="harga" required class="w-full px-4 py-2 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition" placeholder="Contoh: 27K">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Deskripsi Singkat (Opsional)</label>
+                    <textarea id="deskripsi" rows="2" class="w-full px-4 py-2 text-xs rounded-xl bg-white border border-stone-300 focus:outline-none focus:border-amber-800 transition" placeholder="Keterangan tambahan menu..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl text-xs font-semibold bg-stone-900 text-white hover:bg-amber-800 transition shadow-sm">
+                    Simpan Menu ke Database
+                </button>
+            </form>
+        </div>
+
+        <!-- Form Hapus Menu -->
+        <div class="bg-[#F5F2EB] border border-stone-300 rounded-2xl p-6 md:p-10 shadow-sm space-y-6">
+            <div class="space-y-1">
+                <h1 class="text-xl font-serif font-bold text-red-700">Hapus Menu</h1>
+                <p class="text-xs text-stone-500">Masukkan persis nama menu yang ingin dihapus dari Google Sheet.</p>
+            </div>
+
+            <form id="deleteForm" onsubmit="deleteData(event)" class="space-y-4">
+                <div class="space-y-1">
+                    <label class="text-xs font-semibold text-stone-700">Nama Menu yang Akan Dihapus</label>
+                    <input type="text" id="delete_nama_menu" required class="w-full px-4 py-2 text-xs rounded-xl bg-white border border-red-300 focus:outline-none focus:border-red-600 transition" placeholder="Contoh: Es Kopi Susu Aren">
+                </div>
+
+                <button type="submit" class="w-full py-3 rounded-xl text-xs font-semibold bg-red-700 text-white hover:bg-red-800 transition shadow-sm">
+                    Hapus Menu dari Database
+                </button>
+
+                <div class="text-center pt-2">
+                    <a href="menu.html" class="text-xs font-semibold text-stone-600 hover:text-[#D97706] transition">&larr; Lihat Halaman Menu Publik</a>
+                </div>
+            </form>
+        </div>
+
+    </main>
+
+    <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz-Pi9mWinhNJm-tAI8Tbt6jLwqmUG4SxfPLIi36QQ3H82Cx_RzM4OUDR16cp8XoQOzyg/exec";
+
+        const subKategoriOptions = {
+            "Drinks": ["Signature", "Classic", "Matcha Series", "Tea", "Blended", "Mocktail", "Add On"],
+            "Foods": ["Snacks", "Pastry", "Main Course"]
+        };
+
+        function updateSubKategori() {
+            const kategoriSelect = document.getElementById('kategori').value;
+            const subKategoriSelect = document.getElementById('sub_kategori');
+            
+            subKategoriSelect.innerHTML = '<option value="">Pilih Sub-Kategori</option>';
+            
+            if (subKategoriOptions[kategoriSelect]) {
+                subKategoriOptions[kategoriSelect].forEach(sub => {
+                    let opt = document.createElement('option');
+                    opt.value = sub;
+                    opt.innerText = sub;
+                    subKategoriSelect.appendChild(opt);
+                });
+            }
+        }
+
+        async function submitData(event) {
+            event.preventDefault();
+            
+            const formData = {
+                nama_menu: document.getElementById('nama_menu').value,
+                kategori: document.getElementById('kategori').value,
+                sub_kategori: document.getElementById('sub_kategori').value,
+                harga: document.getElementById('harga').value,
+                deskripsi: document.getElementById('deskripsi').value
+            };
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            submitBtn.innerText = "Menyimpan...";
+            submitBtn.disabled = true;
+
+            try {
+                let response = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(formData)
+                });
+                
+                alert("Berhasil! Permintaan simpan menu telah dikirim.");
+                document.getElementById('inputForm').reset();
+                document.getElementById('sub_kategori').innerHTML = '<option value="">Pilih kategori utama terlebih dahulu</option>';
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan koneksi ke Google Sheet.");
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
+        async function deleteData(event) {
+            event.preventDefault();
+
+            const menuName = document.getElementById('delete_nama_menu').value;
+            if (!confirm(`Apakah Anda yakin ingin menghapus menu "${menuName}"?`)) return;
+
+            const deleteDataPayload = {
+                action: "delete",
+                nama_menu: menuName
+            };
+
+            const deleteBtn = event.target.querySelector('button[type="submit"]');
+            const originalText = deleteBtn.innerText;
+            deleteBtn.innerText = "Menghapus...";
+            deleteBtn.disabled = true;
+
+            try {
+                await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify(deleteDataPayload)
+                });
+                
+                alert("Perintah hapus dikirim. Cek Google Sheet Anda beberapa saat lagi.");
+                document.getElementById('deleteForm').reset();
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan saat menghapus data.");
+            } finally {
+                deleteBtn.innerText = originalText;
+                deleteBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
